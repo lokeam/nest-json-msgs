@@ -1,13 +1,9 @@
+import { Injectable } from '@nestjs/common';
 import { MessagesRepository } from './messages.repository';
 
-
+@Injectable()
 export class MessagesService {
-  messagesRepo: MessagesRepository;
-
-  constructor() {
-    // Service is creating its own deps. DO NOT DO THIS ON NEST APPS. USE DEP INJECTION INSTEAD.
-    this.messagesRepo = new MessagesRepository();
-  }
+  constructor(public messagesRepo: MessagesRepository) {}
 
   findOne(id: string) {
     return this.messagesRepo.findOne(id);
